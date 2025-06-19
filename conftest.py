@@ -14,12 +14,12 @@ def pytest_addoption(parser):
 @pytest.fixture(scope="function")
 def browser(request):
     # Получение значения языка из параметров командной строки
-    language = request.config.getoption('language')
+    browser_language = request.config.getoption('language')
     options = Options()
     # Установка предпочтительного языка для браузера
-    options.add_experimental_option('prefs', {'intl.accept_languages': language})
+    options.add_experimental_option('prefs', {'intl.accept_languages': browser_language})
     browser = webdriver.Chrome(options=options)
-    browser.implicitly_wait(5)
+    
 
     yield browser
 
